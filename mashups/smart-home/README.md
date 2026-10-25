@@ -25,3 +25,11 @@ After Things start running, the main mashup logic can be run using the command `
 ## Running with Docker
 
 Every Thing and the main logic have separate docker files.
+
+## Smart Clock Addresses
+
+`SMART_CLOCK_HOSTNAME` sets the clock's listening address and defaults to `localhost`.
+Set `SMART_CLOCK_PUBLIC_HOSTNAME` to the hostname clients should use in the generated Thing Description forms.
+When it is unset or empty, node-wot keeps its automatic address discovery.
+The production Compose file sets it from `STACK_HOSTNAME`.
+The local stack keeps automatic discovery so the mashup can use the clock's container address instead of its own `localhost`.

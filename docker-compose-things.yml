@@ -300,10 +300,9 @@ services:
             - traefik.udp.routers.smart-home-smart-clock.entrypoints=smart-home-smart-clock
             - traefik.udp.services.smart-home-smart-clock.loadbalancer.server.port=${SMART_HOME_SMART_CLOCK_PORT_OUT}
         environment:
-            # Since mashup communicates inside the Docker network use of localhost in a TD result as
-            # the mashup container's its own localhost. Therefore hostname given as their docker service name.
-            # In production we will have a dedicated address and this issue won't be a problem.
+            # Bind internally while advertising the hostname reachable by external clients.
             - SMART_CLOCK_HOSTNAME=smart-home-smart-clock
+            - SMART_CLOCK_PUBLIC_HOSTNAME=${STACK_HOSTNAME}
             - SMART_CLOCK_PORT=${SMART_HOME_SMART_CLOCK_PORT_OUT}
         restart: on-failure
         deploy:
